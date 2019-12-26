@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>		
+		<meta charset=utf-8/>
+		<title>TEST4</title>	
+		<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"> -->
+		<script type="text/javascript" src="F:/Research/HTML5+CSS/html practice/jquery-3.3.1.min.js">
+		</script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			
+		});
+		</script>
+		
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="600" height="600">
+		</canvas>
+		
+		<script>
+		var canvas = $("#myCanvas");
+		var context = canvas.get(0).getContext("2d"); 
+		
+		var imageData = context.createImageData(600,600);
+		var pixels = imageData.data;
+		
+		var numTileRows = 32;
+		var numTileCols = 32;
+		
+		var tileWidth = imageData.width/numTileCols;
+		var tileHeight = imageData.height/numTileRows;
+		
+		for (var r = 0; r < numTileRows; r++){
+			for(var c = 0; c < numTileCols; c++){
+				var red =Math.floor(Math.random()*255);
+				var green =Math.floor(Math.random()*255);
+				var blue =Math.floor(Math.random()*255);
+				
+				for (var tr = 0; tr < tileHeight; tr++){
+					for (var tc = 0; tc < tileWidth; tc++){
+						var trueX = (c*tileWidth)+tc;
+						var trueY = (r*tileHeight)+tr;
+						var pos = (trueY*(imageData.width*4))+trueX*4;
+						pixels[pos] = red;
+						pixels[pos+1] = green;
+						pixels[pos+2] = blue;
+						pixels[pos+3] = 255;
+					}
+				}
+				
+				
+				
+			}
+		}
+		context.putImageData(imageData,0,0);
+		
+		
+			
+				
+		
+		 </script> 
+	
+	
+	</body>
+</html>
